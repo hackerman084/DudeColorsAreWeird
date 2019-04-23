@@ -5,27 +5,55 @@ let colors = [ "ddfb0c7", "aad2e0", "add9a1", "a2ccc0", "8ad2f1", "9796bb", "00b
       "a5b34b", "ddd8ba", "6e746a"];
 
  let colorsChosen = [];
- const moods = [""]
+ const moods = ["calm", "positive", "trustworthy", "negative", "disturbing", "serious", "playful", "exciting"]
  let numChosen = 0;
- console.log(colors.length);
+ let tracking = 1;
 
- function sendEmail(){
-  console.log("sending email");
- //   var transporter = nodemailer.createTransport({
-  //   service: 'gmail',
-  //   auth: {
-  //     user: 'rebeca.i.guillen@gmail.com',
-  //     pass: 'risabel1998'
-  //   }
-  // });
+function reset(){
+  let selectedColors = document.querySelectorAll(".seletedSquare");
+  let inputColors = document.querySelectAll(".inputColors");
+  for (let i =0; i< 5; i++){
+    selectedColors[i].parentNode.removeChild(selectedColors[i])
+    inputColors[i].parentNode.removeChild(inputColors[i]);
+    removeFromArray(selectedColors[i].id);
+  }
+}
 
-  // var mailOptions = {
-  //   from: 'example@gmail.com',
-  //   to: 'rebeca.i.guillen@gmail.com',
-  //   subject: 'Sending Email using Node.js',
-  //   text: 'That was easy!'
-  // };
- }
+function next(){
+  document.getElementById("confirmNext").style.display = "block";
+  document.getElementById("btnNext").style.display = "none";
+}
+
+function confirmYes(){
+  let selectedSquare = document.querySelectorAll(".selectedSquare");
+  let formDiv = document.getElementById("form");
+  for (let i =0; i < 5 ;i++){
+    console.log(selectedSquare[i].id.slice(8));
+    let newInput = document.createElement("input");
+    newInput.setAttribute("type", "hidden");
+    newInput.setAttribute("colorValue", selectedSquare[i].id.slice(8));
+    newInput.setAttribute("id", "input" + selectedSquare[i].id.slice(8));
+    newInput.setAttribute("class", "inputColors");
+
+    formDiv.appendChild(newInput);
+  }
+  if (tracking < 4){
+      document.getElementById("btnNext").style.display = "block";
+      document.getElementById("confirmNext").style.display = "none";
+      reset();
+  } else {
+    document.getElementById("confirmNext").style.display = "none";
+    document.getElementById("btnSubmit").style.display = "block"; 
+  }
+
+  tracking++;
+}
+
+function confirmCancel(){
+  document.getElementById("confirmNext").style.display = "none";
+  document.getElementById("btnNext").style.display = "block";
+}
+
 
  function removeFromArray(id){
     var index = colorsChosen.indexOf(id);
@@ -33,65 +61,61 @@ let colors = [ "ddfb0c7", "aad2e0", "add9a1", "a2ccc0", "8ad2f1", "9796bb", "00b
       colorsChosen.splice(index, 1);
     }
 
-    console.log(colorsChosen);
-    // for (let i =0; i<5; i++){
-    //   if (colorsChosen[i] === id){
-    //     colorChosen.splice
-    //   }
-    // }
  }
 
- function finalColors(){
-  let inputColors = document.querySelectorAll(".square");
-  for (let i=0; i < 5; i++){
-    inputColors[i].setAttribute("value", colorsChosen[i]);
-  }
- }
+function addColor(event){
+  if (numChosen < 5 && !colorsChosen.includes(event.target.id)){
+    // document.getElementById("btnSubmit").style.display = "block";
+    let fiveColors = document.getElementById("fiveColors");
+    let newDiv = document.createElement("div");
+    newDiv.id = "selected" + event.target.id;
+    newDiv.setAttribute("class", "selectedSquare");
+    newDiv.setAttribute("colorValue", event.target.id);
+
+    //this color is being weird
+    if (event.target.id == "#ddfb0c7"){
+      newDiv.style.background = 'rgb(221, 251, 12)';
+    } else {
+      newDiv.style.background = event.target.id;
+    }
+
+    newDiv.addEventListener("click", remove);
+    
+    fiveColors.appendChild(newDiv);
+    numChosen++;
+    colorsChosen.push(event.target.id);
+
+    // let newInput = document.createElement("input");
+    // newInput.setAttribute("type", "hidden");
+    // newInput.setAttribute("value", event.target.id);
+    // newInput.setAttribute("id", "input" + event.target.id);
+
+    // formDiv.appendChild(newInput);
+
+
+  } 
+}
 
  function remove(event){
-  console.log(event.target.id);
   var id = event.target.id.slice(8);
-  console.log(id);
   var element = document.getElementById(event.target.id);
   element.parentNode.removeChild(element);
+
+  var inputEl = document.getElementById("input" + event.target.id);
+  inputEl.parentNode.removeChild(inputEl);
+
   numChosen--;
   removeFromArray(id);
  }
 
  window.onload=function(){
-  sendEmail();
   let squares = document.querySelectorAll(".square");
-  for (let i = 0; i < 45; i++){
+  
+  for (let i = 0; i < 44; i++){
     squares[i].setAttribute("id", "#" + colors[i]);
     squares[i].style.background = "#" + colors[i];
     
-    console.log(squares[i]);
-    squares[i].addEventListener("click", function(event){
-      if (numChosen < 5 && !colorsChosen.includes(event.target.id)){
-        let fiveColors = document.getElementById("fiveColors");
-        let newDiv = document.createElement("div");
-        newDiv.id = "selected" + event.target.id;
-        newDiv.setAttribute("class", "square");
-
-        //this color is being weird
-        if (event.target.id == "#ddfb0c7"){
-          newDiv.style.background = 'rgb(221, 251, 12)';
-        } else {
-          newDiv.style.background = event.target.id;
-        }
-
-        newDiv.addEventListener("click", remove);
-        
-        fiveColors.appendChild(newDiv);
-        numChosen++;
-        colorsChosen.push(event.target.id);
-
-      } 
-      if (numChosen == 4){
-        // sendEmail();
-      }
-
-    })
+    squares[i].addEventListener("click", addColor)
   }
 
  }

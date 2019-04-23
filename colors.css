@@ -3,3 +3,8 @@
     height:70px;
     /*background:blue;*/
 }
+
+.selectedSquare {
+	width:70px;
+	height: 70px;
+}

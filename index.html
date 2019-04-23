@@ -9,6 +9,7 @@
 <body>
   <div class="container">
     <div class="row">
+    	<h2 id="mood"></h2>
       <div class="col-md-6">
         <table class="table table-bordered">
           <tbody>
@@ -79,14 +80,14 @@
 	      <form id = "form" method="POST" action="send">
 	        <div class="col-md-6" id="fiveColors"></div> 
 	        <div class="col-md-6">
-	        	<input id="btnNext" type="button" onclick="next()" value="Next">
+	        	<input id="btnNext" class="btn btn-primary" type="button" onclick="next()" value="Next">
 	        	<div class="col-md-6" id="confirmNext" style="display: none">
 	        		<div class="row">
 	        			Are you sure you want to continue?
 	        		</div>
 	        		<div class = "row">
-	        			<input type="button" value="Yes" onclick="confirmYes()">
-	        			<input type="button" value="Cancel" onclick="confirmCancel()">
+	        			<input type="button" class="btn btn-primary" value="Yes" onclick="confirmYes()">
+	        			<input type="button" class="btn btn-primary" value="Cancel" onclick="confirmCancel()">
 	        		</div>
 	        	</div>
 		        <input type="hidden" name="textInput" value="test">

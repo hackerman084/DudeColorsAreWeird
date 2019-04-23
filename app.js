@@ -7,46 +7,54 @@ let colors = [ "ddfb0c7", "aad2e0", "add9a1", "a2ccc0", "8ad2f1", "9796bb", "00b
  let colorsChosen = [];
  const moods = ["calm", "positive", "trustworthy", "negative", "disturbing", "serious", "playful", "exciting"]
  let numChosen = 0;
- let tracking = 1;
+ let tracking = 0;
 
 function reset(){
-  let selectedColors = document.querySelectorAll(".seletedSquare");
-  let inputColors = document.querySelectAll(".inputColors");
+  let selectedColors = document.querySelectorAll(".selectedSquare");
+  let inputColors = document.querySelectorAll(".inputColors");
   for (let i =0; i< 5; i++){
+    console.log(selectedColors[i].id);
+    let removed = document.getElementById(selectedColors[i].id);
     selectedColors[i].parentNode.removeChild(selectedColors[i])
-    inputColors[i].parentNode.removeChild(inputColors[i]);
     removeFromArray(selectedColors[i].id);
+
   }
 }
 
 function next(){
-  document.getElementById("confirmNext").style.display = "block";
-  document.getElementById("btnNext").style.display = "none";
+  if (colorsChosen.length === 5){
+    document.getElementById("confirmNext").style.display = "block";
+    document.getElementById("btnNext").style.display = "none";
+  }
 }
 
 function confirmYes(){
   let selectedSquare = document.querySelectorAll(".selectedSquare");
   let formDiv = document.getElementById("form");
-  for (let i =0; i < 5 ;i++){
-    console.log(selectedSquare[i].id.slice(8));
+  for (let i = 0; i < 5 ;i++){
+    // console.log(selectedSquare[i]);
     let newInput = document.createElement("input");
     newInput.setAttribute("type", "hidden");
     newInput.setAttribute("colorValue", selectedSquare[i].id.slice(8));
-    newInput.setAttribute("id", "input" + selectedSquare[i].id.slice(8));
+    newInput.setAttribute("id", selectedSquare[i].id.slice(8));
     newInput.setAttribute("class", "inputColors");
 
     formDiv.appendChild(newInput);
   }
-  if (tracking < 4){
+  if (tracking < 7){
       document.getElementById("btnNext").style.display = "block";
       document.getElementById("confirmNext").style.display = "none";
       reset();
+      tracking++;
+      document.getElementById("mood").innerHTML = moods[tracking];
+      numChosen = 0;
+      colorsChosen = [];
+
   } else {
     document.getElementById("confirmNext").style.display = "none";
     document.getElementById("btnSubmit").style.display = "block"; 
   }
 
-  tracking++;
 }
 
 function confirmCancel(){
@@ -84,7 +92,6 @@ function addColor(event){
     fiveColors.appendChild(newDiv);
     numChosen++;
     colorsChosen.push(event.target.id);
-
     // let newInput = document.createElement("input");
     // newInput.setAttribute("type", "hidden");
     // newInput.setAttribute("value", event.target.id);
@@ -101,14 +108,15 @@ function addColor(event){
   var element = document.getElementById(event.target.id);
   element.parentNode.removeChild(element);
 
-  var inputEl = document.getElementById("input" + event.target.id);
-  inputEl.parentNode.removeChild(inputEl);
+  // var inputEl = document.getElementById("input" + event.target.id);
+  // inputEl.parentNode.removeChild(inputEl);
 
   numChosen--;
   removeFromArray(id);
  }
 
  window.onload=function(){
+  document.getElementById("mood").innerHTML = moods[0];
   let squares = document.querySelectorAll(".square");
   
   for (let i = 0; i < 44; i++){

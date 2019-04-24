@@ -7,16 +7,15 @@ var palette = "";
 function hide(id){
 	document.getElementById(id).style.display = "none";
 }
-function show(id){
-	document.getElementById(id).style.display = "block";
+function show(id, value="block"){
+	document.getElementById(id).style.display = value;
 }
 function initTrial(){
 	if (counter >= 5){
 		//hide everything
 		hide("image");
 		hide("next_button_div");
-		hide("form")
-		hide("next_button_div");
+		hide("flex_container");
 
 		//reveal submit button
 		show("submit_button_div");
@@ -24,12 +23,12 @@ function initTrial(){
 	}
 	else{
 
-		//reveal image
+		//reveal form
+		show("flex_container", "flex");
 		show("image");
+		show("form");
 		chooseImage(counter);
 
-		//show form
-		show("form");
 		//reveal next button
 		show("next_button_div");
 		

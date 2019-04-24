@@ -174,6 +174,8 @@ function getInfo(){
 }
 function onSubmitPress(){
 	console.log("SUBMIT!");
+	hide("submit_button_div");
+	show("thank_you_div");
 
 
 

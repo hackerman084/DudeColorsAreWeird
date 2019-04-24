@@ -179,7 +179,7 @@
                         </p>
                         <div id = "resize"> 
                         <textarea id="response" name="response"
-                                  rows="5" cols="33" resize = "both">
+                                   resize = "both">
                          
                         </textarea>
                         </div>
@@ -188,12 +188,20 @@
             </div>
         </div>
         
+        <div id = error_div style = "display:none">
+            <p>
+                Fill out all questions before moving on to the next question.
+            </p>
+        </div> 
+
         <div id = "next_button_div" style = "display:none">
             <button id = next_button onclick = "onNextPress()"> Next </button> 
         </div>
         <div id = "submit_button_div" style = "display:none">
             <button id = submit_button onclick = "onSubmitPress()"> Complete Experiment </button> 
         </div>
+
+
         <script src="./trial2.js"></script>
 
 

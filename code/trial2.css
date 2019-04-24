@@ -1,4 +1,9 @@
-
 #flex_container{
 	flex-direction: row;
 }
+
+.likert li {
+  float: left;
+  list-style-type: none;
+}
+

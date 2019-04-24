@@ -14,18 +14,18 @@
                 In this task, you will be presented with 5 different infographics. The infographic will be presented one at a time, with analysis questions below the image. Answer the questions below to the best of your ability, because once you click next, you will not be able to change your response. Once you complete the fifth question, press the "Complete Trial 2" button! <br> 
 
                 When you're ready, press start to begin!
-            </p>
-        </div>
+            </p></div>
         <div id = start_button_div>
             <button id = start_button onclick = "onStartPress()"> Start </button> 
         </div>
+        
+
         <div id = "flex_container">
             <div id = "image_div">
                 <img id = "image" style = "width:300px; height: 600px; display:none">
             </div>
 
             <div id = "form" style="display:none">
-                <div>
                     <div class = question> 
                         <p>
                             1. What is your current emotional state after viewing the infographic?
@@ -56,7 +56,7 @@
                             <p> Fifth emotion: </p>
                             <input type="text" id="emotion4"><br>
                         </div>
-                    <div>
+                    </div>
 
                     <div class = question>
                         <p> 
@@ -184,15 +184,13 @@
                         </textarea>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
         
         <div id = error_div style = "display:none">
             <p>
                 Fill out all questions before moving on to the next question.
-            </p>
-        </div> 
+            </p></div> 
 
         <div id = "next_button_div" style = "display:none">
             <button id = next_button onclick = "onNextPress()"> Next </button> 

@@ -1,4 +1,4 @@
-var counter = -1; 
+var counter = 0; 
 var imageNames = ["introverts", "commodities", "shopping", "burger", "gaming"];
 var paletteNames = ["disturbing", "negative", "serious", "trustworthy", "calm", "playful", "positive", "exciting"];
 var imgName = "";
@@ -10,6 +10,8 @@ function hide(id){
 function show(id, value="block"){
 	document.getElementById(id).style.display = value;
 }
+
+
 function initTrial(){
 	if (counter >= 5){
 		//hide everything
@@ -36,17 +38,19 @@ function initTrial(){
 
 function onStartPress(){
 	console.log("PRESSED");
-	counter++;
 	//hide start button
 	hide("start_button_div");
 	initTrial();
 }
 
 function onNextPress(){
-	counter++;
-	initTrial();
+
 	if (getInfo()){
 		clearInfo();
+		counter++;
+		initTrial();
+
+
 	}
 	else{
 		getInfo();

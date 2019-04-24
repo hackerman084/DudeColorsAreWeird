@@ -26,7 +26,7 @@ function initTrial(){
 		//reveal form
 		show("flex_container", "flex");
 		show("image");
-		show("form");
+		show("form", "flex");
 		chooseImage(counter);
 
 		//reveal next button

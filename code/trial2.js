@@ -45,8 +45,10 @@ function onStartPress(){
 
 function onNextPress(){
 	counter++;
-	getInfo();
 	initTrial();
+	getInfo();
+	clearInfo();
+
 }
 
 function getRadio(nameVal){
@@ -55,6 +57,24 @@ function getRadio(nameVal){
 
 function getText(id){
 	return document.getElementById(id).value;
+}
+
+function clearInfo(){
+	console.log("CLEAR INFO");
+	var radio = ["curr_state", "palette1", "satisfied_1", "palette2", "satisfied_2", "negative", "positive", "light"]
+
+	for(var i = 0; i < radio.length; i++){
+		var arr = document.getElementsByName(radio[i]);
+		arr.forEach((d) => {d.checked=false;});
+
+	}
+
+	for(var i = 0; i < 5; i++){
+		document.getElementById("emotion"+i).value = "";
+	}
+
+	document.getElementById("response").value = "";
+
 }
 function getInfo(){
 	var question1 = getRadio("curr_state");
@@ -76,6 +96,23 @@ function getInfo(){
 
 	var question6 = getRadio("satisfied_2");
 	console.log("QUESTION 6: " +question6);
+
+	var question7 = getRadio("negative");
+	console.log("QUESTION 7: " +question7);
+
+	var question8 = getRadio("positive");
+	console.log("QUESTION 8: " +question8);
+
+	var question9 = getRadio("light");
+	console.log("QUESTION 9: " +question9);
+
+	var question10 = getText("response");
+	console.log("QUESTION 10: " +question10);
+
+	//probably will send information to database at this point
+
+
+
 
 }
 function onSubmitPress(){

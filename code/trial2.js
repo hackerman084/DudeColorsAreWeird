@@ -45,11 +45,25 @@ function onStartPress(){
 
 function onNextPress(){
 	counter++;
+	getInfo();
 	initTrial();
 }
 
+function getInfo(){
+	var question1 = document.querySelector('input[name = "curr_state"]:checked').value;
+	console.log("QUESTION 1: " +question1);
+	var question2 = new Array(5);
+	for(var i = 0; i < 5; i++){
+		question2[i] = document.getElementById("emotion" + i).value;
+	}
+	console.log("QUESTION 2: " +question2);
+
+}
 function onSubmitPress(){
 	console.log("SUBMIT!");
+
+
+
 }
 
 function chooseImage(counter){

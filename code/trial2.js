@@ -1,41 +1,65 @@
-var counter = 0; 
+var counter = -1; 
 var imageNames = ["introverts", "commodities", "shopping", "burger", "gaming"];
 var paletteNames = ["calm", "disturbing", "exciting", "negative", "playful", "positive", "positive", "serious", "trustworthy"];
+var imgName = "";
+var palette = "";
 
-chooseImage(); 
-
+function hide(id){
+	document.getElementById(id).style.display = "none";
+}
+function show(id){
+	document.getElementById(id).style.display = "block";
+}
 function initTrial(){
-	if (counter === 0){
-		//show start button 
-		//hide everything else
+	if (counter >= 5){
+		//hide everything
+		hide("image");
+		hide("next_button_div");
+		hide("form")
+		hide("next_button_div");
+
+		//reveal submit button
+		show("submit_button_div");
+
 	}
-	else if (counter == 5){
-		//show complete button
+	else{
+
+		//reveal image
+		show("image");
+		chooseImage(counter);
+
+		//show form
+		show("form");
+		//reveal next button
+		show("next_button_div");
+		
 	}
 }
 
 function onStartPress(){
-	
-
-
-
-
+	console.log("PRESSED");
+	counter++;
+	//hide start button
+	hide("start_button_div");
+	initTrial();
 }
 
 function onNextPress(){
-
+	counter++;
+	initTrial();
 }
 
 function onSubmitPress(){
-
+	console.log("SUBMIT!");
 }
 
-function chooseImage(){
+function chooseImage(counter){
 	//choose an image
-	var imgName = imageNames[counter];
+	imgName = imageNames[counter];
+	console.log(imgName);
 	var pal_index = Math.floor((Math.random() * paletteNames.length));
 	console.log(typeof(pal_index));
-	var palette = paletteNames[pal_index];
+	palette = paletteNames[pal_index];
 
 	var path = "../infographics/neutral/" + imgName + "/" + palette + imgName +".png";
 

@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
 var database;
-var url = process.env.MONGODB_URI || 'mongodb://localhost/responses';
+var url =  'mongodb://localhost/responses';
 console.log(url);
-MongoClient.connect(url,{ useNewUrlParser: true }, function (err,datab){
+MongoClient.connect(process.env.MONGODB_URI|| url,{ useNewUrlParser: true }, function (err,datab){
 	if (err) throw err;
 	console.log("connected");
 	//creating table

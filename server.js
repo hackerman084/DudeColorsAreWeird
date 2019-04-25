@@ -35,6 +35,7 @@ router.post("/insert", (req, res) =>{
 	// console.log("REQ: ");
 	// console.log(req);
 	console.log("REQ.BODY: "+req.body);
+	console.log(req.body);
 	// const {id, update} = req.body;
 	// collection.insertOne(req.body, function(ess, res){
 	// 	if (err) throw err;

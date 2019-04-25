@@ -3,7 +3,8 @@ const cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
 var database;
 
-MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost/responses",{ useNewUrlParser: true }, function (err,datab){
+var test = "mongodb://test:test123@ds147436.mlab.com:47436/heroku_9q5nxrrj"
+MongoClient.connect(test || "mongodb://localhost/responses",{ useNewUrlParser: true }, function (err,datab){
 	if (err) throw err;
 	console.log("connected");
 	//creating table

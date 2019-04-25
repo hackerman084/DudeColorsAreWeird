@@ -8,7 +8,6 @@ MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost/responses",{
 	console.log("connected");
 	//creating table
 	database = datab.db('responses')
-
 	var collection = database.collection('test');
 	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];
 	collection.insert(docs[0]);
@@ -33,7 +32,9 @@ router.post("/insert", (req, res) =>{
 });
 
 app.use("/api", router);
-app.listen(process.env.PORT || 8080, function() {
+var port = process.env.PORT || 8080; 
+console.log("PORT:  "+port); 
+app.listen(port, function() {
   console.log("A4 Data Server is running")
 });
 

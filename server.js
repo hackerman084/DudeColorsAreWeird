@@ -8,6 +8,7 @@ MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost/responses",{
 	console.log("connected");
 	//creating table
 	database = datab.db('responses')
+	console.log(process.env.MONGODB_URI);
 	var collection = database.collection('test');
 	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];
 	collection.insertOne(docs[0]);

@@ -1,29 +1,3 @@
-var MongoClient = require('mongodb').MongoClient;
-var database;
-MongoClient.connect("mongodb://localhost/responses",{ useNewUrlParser: true }, function (err,db){
-	if (err) throw err;
-	database = db;
-	console.log("connected");
-	//creating table
-	var collection = db.collection('test');
-	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];
-	collection.insertOne({
-	        Employeeid: 4,
-	        EmployeeName: "NewEmployee"
-	    });
-
-
-	var cursor = collection.find();
-
-    cursor.each(function(err, doc) {
-
-        console.log(doc);
-
-    });
-
-
-	//db.close();
-});
 
 var counter = 0; 
 var imageNames = ["introverts", "commodities", "shopping", "burger", "gaming"];
@@ -67,6 +41,7 @@ function onStartPress(){
 	console.log("PRESSED");
 	//hide start button
 	hide("start_button_div");
+
 	initTrial();
 }
 
@@ -216,7 +191,7 @@ function chooseImage(counter){
 	console.log(typeof(pal_index));
 	palette = paletteNames[pal_index];
 
-	var path = "../infographics/neutral/" + imgName + "/" + palette + imgName +".png";
+	var path = "./infographics/neutral/" + imgName + "/" + palette + imgName +".png";
 
 	console.log(path);
 	document.getElementById("image").src = path;

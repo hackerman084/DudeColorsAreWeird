@@ -27,8 +27,10 @@ app.use(express.static('.'))
 const router = express.Router();
 
 router.post("/insert", (req, res) =>{
-	console.log("RES: " +res);
-	console.log("REQ: " +req);
+	console.log("RES: ");
+	console.log(res);
+	console.log("REQ: ");
+	console.log(req);
 	console.log("REQ.BODY: "+req.body);
 	// const {id, update} = req.body;
 	// collection.insertOne(req.body, function(ess, res){

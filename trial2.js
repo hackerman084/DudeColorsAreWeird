@@ -5,6 +5,8 @@ var paletteNames = ["disturbing", "negative", "serious", "trustworthy", "calm", 
 var imgName = "";
 var palette = "";
 
+var radio = ["curr_emotion", "curr_state", "palette1", "satisfied1", "palette2", "satisfied2", "conn", "light", "light_state"]
+
 function hide(id){
 	document.getElementById(id).style.display = "none";
 }
@@ -51,8 +53,6 @@ function onNextPress(){
 		clearInfo();
 		counter++;
 		initTrial();
-
-
 	}
 	else{
 		getInfo();
@@ -76,7 +76,6 @@ function getText(id){
 
 function clearInfo(){
 	console.log("CLEAR INFO");
-	var radio = ["curr_state", "palette1", "satisfied_1", "palette2", "satisfied_2", "negative", "positive", "light"]
 
 	for(var i = 0; i < radio.length; i++){
 		var arr = document.getElementsByName(radio[i]);
@@ -88,18 +87,33 @@ function clearInfo(){
 	}
 
 	document.getElementById("response").value = "";
-
+	document.getElementById("curr_emotion").value = "";
 }
+
 function getInfo(){
-	//should do null checks to force people to answer before moving onto next screen
-	var question1 = getRadio("curr_state");
-	console.log("QUESTION 1: " +question1);
-	if (!question1){
+
+	var answers = {};
+	var question1 = getText("curr_emotion").trim();
+	if (!question1 || question1.length === 0){
 		show("error_div");
 		return false;
 	}
+	else{
+		console.log("QUESTION1: "+question1);
+		answers["q1"] = question1;
+	}
 
-	var question2 = new Array(5);
+	//should do null checks to force people to answer before moving onto next screen
+	var question2 = getRadio("curr_state");
+	if (!question2){
+		show("error_div");
+		return false;
+	}
+	console.log("QUESTION 2: " +question2);
+
+	answers["q2"] = question2;
+
+	var question3 = new Array(5);
 	for(var i = 0; i < 5; i++){
 		var str = getText("emotion" + i).trim();
 		if (!str || str.length === 0){
@@ -107,68 +121,79 @@ function getInfo(){
 			return false;
 		}
 		else{
-			question2[i] = str;
+			question3[i] = str;
 		}
 	}
-	console.log("QUESTION 2: " +question2);
-
-	var question3 = paletteNames[getRadio("palette1")];
-	if (!question3){
-		show("error_div");
-		return false;
-	}
+	answers["q3"] = question3;
 	console.log("QUESTION 3: " +question3);
 
-	var question4 = getRadio("satisfied_1");
+	var question4 = paletteNames[getRadio("palette1")];
 	if (!question4){
 		show("error_div");
 		return false;
 	}
+	answers["q4"] = question4;
 	console.log("QUESTION 4: " +question4);
 
-	var question5 = paletteNames[getRadio("palette2")]
+	var question5 = getRadio("satisfied1");
 	if (!question5){
 		show("error_div");
 		return false;
 	}
 	console.log("QUESTION 5: " +question5);
 
-	var question6 = getRadio("satisfied_2");
+	var question6 = paletteNames[getRadio("palette2")]
 	if (!question6){
 		show("error_div");
 		return false;
 	}
 	console.log("QUESTION 6: " +question6);
+	answers["q6"] = question6;
 
-	var question7 = getRadio("negative");
+	var question7 = getRadio("satisfied2");
 	if (!question7){
 		show("error_div");
 		return false;
 	}
 	console.log("QUESTION 7: " +question7);
+	answers["q7"] = question7;
 
-	var question8 = getRadio("positive");
-	if (!question8){
+var question8 = getText("response").trim();
+	if (!question8 || question8.length === 0){
 		show("error_div");
 		return false;
 	}
 	console.log("QUESTION 8: " +question8);
+	answers["q8"] = question8;
 
-	var question9 = getRadio("light");
+
+	var question9 = getRadio("conn");
 	if (!question9){
 		show("error_div");
 		return false;
 	}
+	answers["q9"] = question9;
 	console.log("QUESTION 9: " +question9);
 
-	var question10 = getText("response").trim();
-	if (!question10 || question10.length === 0){
+	var question10 = getRadio("light");
+	if (!question10){
 		show("error_div");
 		return false;
 	}
 	console.log("QUESTION 10: " +question10);
+	answers["q10"] = question10;
+
+	var question11 = getRadio("light_state");
+	if (!question11){
+		show("error_div");
+		return false;
+	}
+	console.log("QUESTION 11: " +question11);
+	answers["q11"] = question11;
+
 
 	//probably will send information to database at this point
+	console.log(answers);
 	return true;
 
 

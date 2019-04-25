@@ -1,3 +1,4 @@
+var url =  "http://localhost:8080/"; 
 
 var counter = 0; 
 var imageNames = ["introverts", "commodities", "shopping", "burger", "gaming"];
@@ -43,13 +44,14 @@ function onStartPress(){
 	console.log("PRESSED");
 	//hide start button
 	hide("start_button_div");
-
+	
 	initTrial();
 }
 
 function onNextPress(){
 
 	if (getInfo()){
+
 		clearInfo();
 		counter++;
 		initTrial();
@@ -194,6 +196,8 @@ var question8 = getText("response").trim();
 
 	//probably will send information to database at this point
 	console.log(answers);
+	url = url +"api/insert";
+	axios.post(url, answers);
 	return true;
 
 

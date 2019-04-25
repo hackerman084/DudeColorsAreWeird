@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var database;
 var url =  'mongodb://localhost/responses';
 console.log(url);
-MongoClient.connect(process.env.MONGODB_URI|| url,{ useNewUrlParser: true }, function (err,datab){
+MongoClient.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (err,datab){
 	if (err) throw err;
 	console.log("connected");
 	//creating table

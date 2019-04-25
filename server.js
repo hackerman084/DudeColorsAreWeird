@@ -27,16 +27,19 @@ app.use(express.static('.'))
 const router = express.Router();
 
 router.post("/insert", (req, res) =>{
-	const {id, update} = req.body;
-	collection.insertOne(req.body, function(ess, res){
-		if (err) throw err;
-		console.log("inserted: " +req.body);
-		var collection = database.collection('test');
-		collection.find().toArray(function(err, docs) {
-	    console.log(JSON.stringify(docs));
-	});
+	console.log("RES: " +res);
+	console.log("REQ: " +req);
+	console.log("REQ.BODY: "+req.body);
+	// const {id, update} = req.body;
+	// collection.insertOne(req.body, function(ess, res){
+	// 	if (err) throw err;
+	// 	console.log("inserted: " +req.body);
+	// 	var collection = database.collection('test');
+	// 	collection.find().toArray(function(err, docs) {
+	//     console.log(JSON.stringify(docs));
+	// });
 
-	});
+	// });
 });
 
 app.use("/api", router);

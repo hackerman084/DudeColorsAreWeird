@@ -3,7 +3,8 @@ const cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
 var database;
 var url =  'mongodb://localhost/responses';
-console.log(url);
+console.log("=================================");
+console.log(process.env.MONGODB_URI);
 MongoClient.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (err,datab){
 	if (err) throw err;
 	console.log("connected");

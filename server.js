@@ -10,7 +10,7 @@ MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost/responses",{
 	database = datab.db('responses')
 	var collection = database.collection('test');
 	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];
-	collection.insert(docs[0]);
+	collection.insertOne(docs[0]);
 });
 
 var app = express();

@@ -1,3 +1,30 @@
+var MongoClient = require('mongodb').MongoClient;
+var database;
+MongoClient.connect("mongodb://localhost/responses",{ useNewUrlParser: true }, function (err,db){
+	if (err) throw err;
+	database = db;
+	console.log("connected");
+	//creating table
+	var collection = db.collection('test');
+	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];
+	collection.insertOne({
+	        Employeeid: 4,
+	        EmployeeName: "NewEmployee"
+	    });
+
+
+	var cursor = collection.find();
+
+    cursor.each(function(err, doc) {
+
+        console.log(doc);
+
+    });
+
+
+	//db.close();
+});
+
 var counter = 0; 
 var imageNames = ["introverts", "commodities", "shopping", "burger", "gaming"];
 var paletteNames = ["disturbing", "negative", "serious", "trustworthy", "calm", "playful", "positive", "exciting"];

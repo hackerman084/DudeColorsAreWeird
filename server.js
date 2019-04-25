@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+var bodyParser = require('body-parser');
+
 var MongoClient = require('mongodb').MongoClient;
 var database;
 
@@ -25,12 +27,13 @@ var app = express();
 app.use(cors()); // enable cors
 app.use(express.static('.'))
 const router = express.Router();
-
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json());
 router.post("/insert", (req, res) =>{
-	console.log("RES: ");
-	console.log(res);
-	console.log("REQ: ");
-	console.log(req);
+	// console.log("RES: ");
+	// console.log(res);
+	// console.log("REQ: ");
+	// console.log(req);
 	console.log("REQ.BODY: "+req.body);
 	// const {id, update} = req.body;
 	// collection.insertOne(req.body, function(ess, res){

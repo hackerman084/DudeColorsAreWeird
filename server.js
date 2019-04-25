@@ -13,6 +13,12 @@ MongoClient.connect(test || "mongodb://localhost/responses",{ useNewUrlParser: t
 	var collection = database.collection('test');
 	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];
 	collection.insertOne(docs[0]);
+
+	var collection = database.collection('test');
+		collection.find().toArray(function(err, docs) {
+	    console.log(JSON.stringify(docs));
+	});
+
 });
 
 var app = express();

@@ -8,7 +8,7 @@ MongoClient.connect(test || "mongodb://localhost/responses",{ useNewUrlParser: t
 	if (err) throw err;
 	console.log("connected");
 	//creating table
-	database = datab.db('responses')
+	database = datab.db('heroku_9q5nxrrj')
 	console.log(process.env.MONGODB_URI);
 	var collection = database.collection('test');
 	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];

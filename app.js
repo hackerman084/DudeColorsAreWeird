@@ -10,6 +10,8 @@ let numChosen = 0;
 let tracking = 0;
 let finalResults = [];
 let init_answers = {};
+let form_data = {}
+let trial_data = {};
 
 function hide(id){
   document.getElementById(id).style.display = "none";
@@ -83,6 +85,8 @@ function onNextPress(){
     hide("intro_div");
     hide("error_div");
     show("container");
+    trial_data["metadata"] = init_answers;
+    console.log(trial_data);
   }
   else{
     show("error_div");
@@ -122,6 +126,18 @@ function confirmYes(){
     newInput.setAttribute("class", "inputColors");
 
     formDiv.appendChild(newInput);
+
+    //adding results to object
+    let results = {};
+    results["mood"] = document.getElementById("mood").innerHTML;
+    results["colors"] = colorsChosen;
+
+    let trialNum = "trial" +tracking;
+    console.log(trialNum + " RESULTS: " +JSON.stringify(results));
+
+    trial_data[trialNum] = results;
+
+
   }
   if (tracking < 7){
       document.getElementById("btnNext").style.display = "block";
@@ -144,13 +160,23 @@ function confirmCancel(){
   document.getElementById("btnNext").style.display = "block";
 }
 
-// function onSubmit(){
-//   let results = {};
-//   results["mood"] = document.getElementById("mood").innerHTML;
-//   results["colors"] = colorsChosen;
-//   console.log(results);
-//   axios.post("/api/test", results);
-// }
+function submit(){
+  let results = {};
+  results["mood"] = document.getElementById("mood").innerHTML;
+  results["colors"] = colorsChosen;
+
+  let trialNum = "trial" +tracking;
+  console.log(trialNum + " RESULTS: " +results);
+
+  trial_data[trialNum] = results;
+
+  console.log("TRIAL_DATA: ");
+  console.log(trial_data);
+
+  window.localStorage.setItem("exp1", JSON.stringify(trial_data)); //storing info in local storage
+  
+  //axios.post("/api/test", results);
+}
 
 
  function removeFromArray(id){

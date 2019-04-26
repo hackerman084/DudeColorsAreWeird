@@ -14,7 +14,7 @@
         Welcome to Astha and Rebeca's Experiment! You will be asked to do 2 experiments with a series of trials within them, but first, please fill out the form below! When you're ready, click the "Next" button. <br>
       </p>
     </div>
-    <div id = "form">
+    <div id = "form1">
       <div class = "question"> 
         <p>
             1. Enter your first name. 
@@ -166,7 +166,8 @@
         </table>        
       </div>
       <div class="col-md-6">
-	      <form id = "form" method="POST" action="send">
+        <!-- action="send" method="POST" -->
+	      <div id = "form">
 	        <div class="col-md-6" id="fiveColors"></div> 
 	        <div class="col-md-6">
 	        	<input type="button" id="btnNext" class="btn btn-primary" value="Next" onclick="next()">
@@ -180,7 +181,7 @@
 	        		</div>
 	        	</div>
 		        <input type="hidden" name="textInput" value="test">
-		        <button type="submit" id="btnSubmit" style="display: none">Submit</button>       
+		        <button type="submit" id="btnSubmit" onclick = "submit()" style="display: none">Submit</button>       
 	        </div>
 	      </form>
       </div>

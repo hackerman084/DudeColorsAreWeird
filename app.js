@@ -139,7 +139,7 @@ function confirmYes(){
 
 
   }
-  if (tracking < 7){
+  if (tracking < 0){
       document.getElementById("btnNext").style.display = "block";
       document.getElementById("confirmNext").style.display = "none";
       reset();
@@ -173,7 +173,7 @@ function submit(){
   console.log("TRIAL_DATA: ");
   console.log(trial_data);
 
-  window.localStorage.setItem("exp1", JSON.stringify(trial_data)); //storing info in local storage
+  window.localStorage.setItem("trial_data", JSON.stringify(trial_data)); //storing info in local storage
 
   window.location = "./index.html"
   //axios.post("/api/test", results);

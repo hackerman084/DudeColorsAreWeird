@@ -5,7 +5,7 @@ var imageNames = ["introverts", "commodities", "shopping", "burger", "gaming"];
 var paletteNames = ["disturbing", "negative", "serious", "trustworthy", "calm", "playful", "positive", "exciting"];
 var imgName = "";
 var palette = "";
-
+var trial_data = {};
 var radio = ["curr_emotion", "curr_state", "palette1", "satisfied1", "palette2", "satisfied2", "conn", "light", "light_state"]
 
 function hide(id){
@@ -44,7 +44,8 @@ function onStartPress(){
 	console.log("PRESSED");
 	//hide start button
 	hide("start_button_div");
-	
+	trial_data = JSON.parse(window.localStorage.getItem("trial_data"));
+	console.log("TRIAL DATA: " + JSON.stringify(trial_data));
 	initTrial();
 }
 

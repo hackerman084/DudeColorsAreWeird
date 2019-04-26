@@ -8,7 +8,95 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div id = "intro_div">
+    <div id = "intro_text">
+      <p>
+        Welcome to Astha and Rebeca's Experiment! You will be asked to do 2 experiments with a series of trials within them, but first, please fill out the form below! When you're ready, click the "Next" button. <br>
+      </p>
+    </div>
+    <div id = "form1">
+      <div class = "question"> 
+        <p>
+            1. Enter your first name. 
+        </p>
+        <div class = "text-box">
+            <p> First Name: </p>
+            <input type="text" id="first_name"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            2. Enter your last name. 
+        </p>
+        <div class = "text-box">
+            <p> Last Name: </p>
+            <input type="text" id="last_name"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            3. Enter your age. 
+        </p>
+        <div class = "text-box">
+            <p> Age: </p>
+            <input type="text" id="age"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            4. Enter your major or occupation. 
+        </p>
+        <div class = "text-box">
+            <p> Major or Occupation: </p>
+            <input type="text" id="major_occ"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            5. To what degree to you agree with the following statement: I consider myself to be a graphic designer, by trade, hobby, etc. 
+        </p>
+          <ul class="likert">
+            <li> Completely Disagree </li>
+            <li><input type="radio" name="graphic" value="1" /></li>
+            <li><input type="radio" name="graphic" value="2" /></li>
+            <li><input type="radio" name="graphic" value="3" /></li>
+            <li><input type="radio" name="graphic" value="4" /></li>
+            <li><input type="radio" name="graphic" value="5" /></li>
+            <li> Completely Agree </li>
+          </ul>
+      </div>
+
+      <div class = "question"> 
+        <p>
+            6. To what degree to you agree with the following statement: I consider myself to be an artist, by trade, hobby, etc. 
+        </p>
+          <ul class="likert">
+            <li> Completely Disagree </li>
+            <li><input type="radio" name="artist" value="1" /></li>
+            <li><input type="radio" name="artist" value="2" /></li>
+            <li><input type="radio" name="artist" value="3" /></li>
+            <li><input type="radio" name="artist" value="4" /></li>
+            <li><input type="radio" name="artist" value="5" /></li>
+            <li> Completely Agree </li>
+          </ul>
+      </div>
+      <div id = error_div style = "display:none">
+            <p>
+                Fill out all questions before moving on to the next question.
+            </p>
+        </div> 
+      <div id = "next_button_div">
+        <button id = next_button onclick = "onNextPress()"> Next </button>  
+      </div>
+
+
+    </div>
+  </div>
+  <div class="container" id = "container" style="display:none">
     <div class="row">
     	<h2 id="mood"></h2>
       <div class="col-md-6">
@@ -78,7 +166,8 @@
         </table>        
       </div>
       <div class="col-md-6">
-	      <form id = "form" method="POST" action="send">
+        <!-- action="send" method="POST" -->
+	      <div id = "form">
 	        <div class="col-md-6" id="fiveColors"></div> 
 	        <div class="col-md-6">
 	        	<input type="button" id="btnNext" class="btn btn-primary" value="Next" onclick="next()">
@@ -92,7 +181,7 @@
 	        		</div>
 	        	</div>
 		        <input type="hidden" name="textInput" value="test">
-		        <button type="submit" id="btnSubmit" style="display: none">Submit</button>       
+		        <button type="submit" id="btnSubmit" onclick = "submit()" style="display: none">Submit</button>       
 	        </div>
 	      </form>
       </div>

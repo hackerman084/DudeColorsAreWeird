@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8">
+        <title>Trial 2</title>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./trial2.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    </head>
+    <body>
+        <div id = "task_description">
+            <h2> Trial 2 Description </h2> 
+            <p> 
+                In this task, you will be presented with 5 different infographics. The infographic will be presented one at a time, with analysis questions below the image. Answer the questions below to the best of your ability, because once you click next, you will not be able to change your response. Once you complete the fifth question, press the "Complete Trial 2" button! <br> 
+
+                When you're ready, press start to begin!
+            </p></div>
+        <div id = start_button_div>
+            <button id = start_button onclick = "onStartPress()"> Start </button> 
+        </div>
+        
+
+        <div id = "flex_container">
+            <div id = "image_div">
+                <img id = "image" style = "width:300px; height: 600px; display:none">
+            </div>
+
+            <div id = "form" style="display:none">
+                    <div class = question> 
+                        <p>
+                            1. What is your current emotional state after viewing the infographic?
+                        </p>
+                            <ul class="likert">
+                              <li> Extremely Sad </li>
+                              <li><input type="radio" name="curr_state" value="1" /></li>
+                              <li><input type="radio" name="curr_state" value="2" /></li>
+                              <li><input type="radio" name="curr_state" value="3" /></li>
+                              <li><input type="radio" name="curr_state" value="4" /></li>
+                              <li><input type="radio" name="curr_state" value="5" /></li>
+                              <li> Extremely Happy </li>
+                            </ul>
+                    </div>
+                    <div class = question>
+                        <p>
+                            2. What are 5 emotions that come to mind when examining the palette of the infographic?
+                        </p>
+                        <div class = text-box>
+                            <p> First emotion: </p>
+                            <input type="text" id="emotion0"><br>
+                            <p> Second emotion: </p>
+                            <input type="text" id="emotion1"><br>
+                            <p> Third emotion: </p>
+                            <input type="text" id="emotion2"><br>
+                            <p> Fourth emotion: </p>
+                            <input type="text" id="emotion3"><br>
+                            <p> Fifth emotion: </p>
+                            <input type="text" id="emotion4"><br>
+                        </div>
+                    </div>
+
+                    <div class = question>
+                        <p> 
+                            3. If you had to choose the best categorization for the mood of this palette, what would it be? 
+                        </p>
+                         <ul class="likert">
+                            <li> Disgusting </li>
+                            <li><input type="radio" name="palette1" value="0" /></li>
+                            <li> Negative </li>
+                            <li><input type="radio" name="palette1" value="1" /></li>
+                            <li> Serious</li>
+                            <li><input type="radio" name="palette1" value="2" /></li>
+                            <li> Trustworthy</li>
+                            <li><input type="radio" name="palette1" value="3" /></li>
+                            <li> Calm </li>
+                            <li><input type="radio" name="palette1" value="4" /></li>
+                            <li> Playful</li>
+                            <li><input type="radio" name="palette1" value="5" /></li>
+                            <li> Positive</li>
+                            <li><input type="radio" name="palette1" value="6" /></li>
+                            <li> Exciting </li>
+                            <li><input type="radio" name="palette1" value="7" /></li>       
+                        </ul>
+                    </div>
+                    <div class = question> 
+                        <p>
+                            4. How satisfied are you with the above assessment? 
+                        </p>
+                            <ul class="likert">
+                              <li> Completely Unsatisfied with Response </li>
+                              <li><input type="radio" name="satisfied_1" value="1" /></li>
+                              <li><input type="radio" name="satisfied_1" value="2" /></li>
+                              <li><input type="radio" name="satisfied_1" value="3" /></li>
+                              <li><input type="radio" name="satisfied_1" value="4" /></li>
+                              <li><input type="radio" name="satisfied_1" value="5" /></li>
+                              <li> Completely Satisfied with Response </li>
+                            </ul>
+                    </div>
+
+                    <div class = question>
+                        <p> 
+                            5. If you had to choose the second best categorization for the mood of this palette, what would it be? 
+                        </p>
+                         <ul class="likert">
+                            <li> Disgusting </li>
+                            <li><input type="radio" name="palette2" value="0" /></li>
+                            <li> Negative </li>
+                            <li><input type="radio" name="palette2" value="1" /></li>
+                            <li> Serious</li>
+                            <li><input type="radio" name="palette2" value="2" /></li>
+                            <li> Trustworthy</li>
+                            <li><input type="radio" name="palette2" value="3" /></li>
+                            <li> Calm </li>
+                            <li><input type="radio" name="palette2" value="4" /></li>
+                            <li> Playful</li>
+                            <li><input type="radio" name="palette2" value="5" /></li>
+                            <li> Positive</li>
+                            <li><input type="radio" name="palette2" value="6" /></li>
+                            <li> Exciting </li>
+                            <li><input type="radio" name="palette2" value="7" /></li>       
+                        </ul>
+                    </div>
+                    <div class = question> 
+                        <p>
+                            6. How satisfied are you with the above assessment? 
+                        </p>
+                            <ul class="likert">
+                              <li> Completely Unsatisfied with Response </li>
+                              <li><input type="radio" name="satisfied_2" value="1" /></li>
+                              <li><input type="radio" name="satisfied_2" value="2" /></li>
+                              <li><input type="radio" name="satisfied_2" value="3" /></li>
+                              <li><input type="radio" name="satisfied_2" value="4" /></li>
+                              <li><input type="radio" name="satisfied_2" value="5" /></li>
+                              <li> Completely Satisfied with Response </li>
+                            </ul>
+                    </div>
+                    <div class = question>
+                        <p>
+                            7. To what extent to you agree with the following statement: The palette suggests a negative slant to information presented in the infographic.
+                        </p>
+                        <ul class="likert">
+                              <li> Completely Disagree with Statement </li>
+                              <li><input type="radio" name="negative" value="1" /></li>
+                              <li><input type="radio" name="negative" value="2" /></li>
+                              <li><input type="radio" name="negative" value="3" /></li>
+                              <li><input type="radio" name="negative" value="4" /></li>
+                              <li><input type="radio" name="negative" value="5" /></li>
+                              <li> Completely Agree with Statement </li>
+                            </ul>
+
+                    </div>
+                    <div class = question>
+                        <p>
+                            8. To what extent to you agree with the following statement: The palette suggests a positive slant to information presented in the infographic.
+                        </p>
+                        <ul class="likert">
+                            <li> Completely Disagree with Statement </li>
+                            <li><input type="radio" name="positive" value="1" /></li>
+                            <li><input type="radio" name="positive" value="2" /></li>
+                            <li><input type="radio" name="positive" value="3" /></li>
+                            <li><input type="radio" name="positive" value="4" /></li>
+                            <li><input type="radio" name="positive" value="5" /></li>
+                            <li> Completely Agree with Statement </li>
+                        </ul>
+                    </div>
+                    <div class = question>
+                        <p> 
+                            9. Given this color palette, would you use it to present information in a positive or negative light? 
+                        <p>
+                        <ul class="likert">
+                            <li> Negative </li>
+                            <li><input type="radio" name="light" value="0" /></li>
+                            <li> Positive </li>
+                            <li><input type="radio" name="light" value="1" /></li>
+                        </ul>
+                    </div>
+                    <div class = question>
+                        <p> 
+                            10. Does the color palette influence your perception of the infographic? If so, how? Please limit your response to 1-2 sentences.
+                        </p>
+                        <div id = "resize"> 
+                        <textarea id="response" name="response"
+                                   resize = "both">
+                         
+                        </textarea>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div id = error_div style = "display:none">
+            <p>
+                Fill out all questions before moving on to the next question.
+            </p></div> 
+
+        <div id = "next_button_div" style = "display:none">
+            <button id = next_button onclick = "onNextPress()"> Next </button> 
+        </div>
+        <div id = "submit_button_div" style = "display:none">
+            <button id = submit_button onclick = "onSubmitPress()"> Complete Experiment </button> 
+        </div>
+
+        <div id = "thank_you_div" style = "display:none">
+            <p>
+                Thank you for participating in our final project! You get: One Free Hug from Astha or Rebeca!
+            </p>
+        </div>
+        <script src="./trial2.js"></script>
+
+
+
+    </body>
+</html>   

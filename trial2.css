@@ -1,0 +1,19 @@
+#flex_container{
+	flex-direction: row;
+}
+
+.likert li {
+  float: left;
+  list-style-type: none;
+}
+
+.question{
+	display:flex;
+	flex-direction: column
+}
+
+#form{
+	flex-direction:column;
+}
+
+

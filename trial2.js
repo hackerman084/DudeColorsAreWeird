@@ -7,7 +7,7 @@ var imgName = "";
 var palette = "";
 var trial_data = {};
 var radio = ["curr_emotion", "curr_state", "palette1", "satisfied1", "palette2", "satisfied2", "conn", "light", "light_state"]
-
+var exp2 = {};
 function hide(id){
 	document.getElementById(id).style.display = "none";
 }
@@ -17,7 +17,7 @@ function show(id, value="block"){
 
 
 function initTrial(){
-	if (counter >= 5){
+	if (counter >= 1){
 		//hide everything
 		hide("image");
 		hide("next_button_div");
@@ -50,9 +50,7 @@ function onStartPress(){
 }
 
 function onNextPress(){
-
 	if (getInfo()){
-
 		clearInfo();
 		counter++;
 		initTrial();
@@ -197,7 +195,10 @@ var question8 = getText("response").trim();
 
 	//probably will send information to database at this point
 	console.log(answers);
-	axios.post("/api/insert", answers);
+	
+	var trialNum = "trial" +counter;
+	exp2[trialNum] = answers;
+	console.log(exp2);
 	return true;
 
 
@@ -207,6 +208,11 @@ function onSubmitPress(){
 	console.log("SUBMIT!");
 	hide("submit_button_div");
 	show("thank_you_div");
+	trial_data["exp2"] = exp2;
+
+	console.log("TRIAL DATA: " +JSON.stringify(trial_data));
+	axios.post("/api/insert", trial_data);
+
 
 
 

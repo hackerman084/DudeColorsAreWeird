@@ -37,7 +37,7 @@
 
       <div class = "question"> 
         <p>
-            2. Enter your age. 
+            3. Enter your age. 
         </p>
         <div class = "text-box">
             <p> Age: </p>
@@ -57,7 +57,7 @@
 
       <div class = "question"> 
         <p>
-            4. To what degree to you agree with the following statement: I consider myself to be a graphic designer, by trade, hobby, etc. 
+            5. To what degree to you agree with the following statement: I consider myself to be a graphic designer, by trade, hobby, etc. 
         </p>
           <ul class="likert">
             <li> Completely Disagree </li>
@@ -72,7 +72,7 @@
 
       <div class = "question"> 
         <p>
-            5. To what degree to you agree with the following statement: I consider myself to be an artist, by trade, hobby, etc. 
+            6. To what degree to you agree with the following statement: I consider myself to be an artist, by trade, hobby, etc. 
         </p>
           <ul class="likert">
             <li> Completely Disagree </li>
@@ -83,6 +83,14 @@
             <li><input type="radio" name="artist" value="5" /></li>
             <li> Completely Agree </li>
           </ul>
+      </div>
+      <div id = error_div style = "display:none">
+            <p>
+                Fill out all questions before moving on to the next question.
+            </p>
+        </div> 
+      <div id = "next_button_div">
+        <button id = next_button onclick = "onNextPress()"> Next </button>  
       </div>
 
 

@@ -4,12 +4,93 @@ let colors = [ "ddfb0c7", "aad2e0", "add9a1", "a2ccc0", "8ad2f1", "9796bb", "00b
       "845145", "335671", "116160", "69301d", "ff8000", "f9468c", "f80f19", "C91e11", "920000", "aad2e0", 
       "a5b34b", "ddd8ba", "6e746a"];
 
- let colorsChosen = [];
- const moods = ["calm", "positive", "trustworthy", "negative", "disturbing", "serious", "playful", "exciting"]
- let numChosen = 0;
- let tracking = 0;
- let finalResults = [];
+let colorsChosen = [];
+const moods = ["calm", "positive", "trustworthy", "negative", "disturbing", "serious", "playful", "exciting"]
+let numChosen = 0;
+let tracking = 0;
+let finalResults = [];
+let init_answers = {};
 
+function hide(id){
+  document.getElementById(id).style.display = "none";
+}
+function show(id, value="block"){
+  document.getElementById(id).style.display = value;
+}
+function getRadio(nameVal){
+  var arr = document.getElementsByName(nameVal);
+  for(var i = 0; i < arr.length; i++){
+    if (arr[i].checked){
+      return arr[i].value;
+    }
+  }
+  return null;
+}
+
+function getText(id){
+  return document.getElementById(id).value;
+}
+function getInfo(){
+  var q1 = getText("first_name");
+  if (!q1 || q1.length === 0){
+    return false; 
+  }
+  console.log("Q1: " +q1);
+  init_answers["firstname"] = q1;
+
+  var q2 = getText("last_name");
+  if (!q2 || q2.length === 0){
+    return false; 
+  }
+  console.log("Q2: " +q2);
+  init_answers["lastname"] = q2;
+
+  var q3 = getText("age");
+  if (!q3 || q3.length === 0 || isNaN(parseInt(q3)) ){
+    return false; 
+  }
+  console.log("Q3: " +q3);
+  init_answers["age"] = parseInt(q3);
+
+  var q4 = getText("major_occ");
+  if (!q4 || q4.length === 0){
+    return false; 
+  }
+
+  console.log("Q4: " +q4);
+  init_answers["major_occ"] = q4;
+
+  var q5 = getRadio("graphic");
+  if (!q5){
+    return false;
+  }
+  console.log("Q5: " +q5);
+  init_answers["graphic_design_exp"] = q5;
+
+  var q6 = getRadio("artist");
+  if (!q6){
+    return false;
+  }
+  console.log("Q6: " +q6);
+  init_answers["artist_exp"] = q6;
+
+  return true;
+}
+function onNextPress(){
+  //check if all information is saved
+  if (getInfo()){
+    //hide form
+    hide("intro_div");
+    hide("error_div");
+    show("container");
+  }
+  else{
+    show("error_div");
+  }
+
+
+
+}
 function reset(){
   let selectedColors = document.querySelectorAll(".selectedSquare");
   let inputColors = document.querySelectorAll(".inputColors");

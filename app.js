@@ -8,6 +8,7 @@ let colors = [ "ddfb0c7", "aad2e0", "add9a1", "a2ccc0", "8ad2f1", "9796bb", "00b
  const moods = ["calm", "positive", "trustworthy", "negative", "disturbing", "serious", "playful", "exciting"]
  let numChosen = 0;
  let tracking = 0;
+ let finalResults = [];
 
 function reset(){
   let selectedColors = document.querySelectorAll(".selectedSquare");
@@ -62,6 +63,14 @@ function confirmCancel(){
   document.getElementById("btnNext").style.display = "block";
 }
 
+// function onSubmit(){
+//   let results = {};
+//   results["mood"] = document.getElementById("mood").innerHTML;
+//   results["colors"] = colorsChosen;
+//   console.log(results);
+//   axios.post("/api/test", results);
+// }
+
 
  function removeFromArray(id){
     var index = colorsChosen.indexOf(id);
@@ -73,7 +82,6 @@ function confirmCancel(){
 
 function addColor(event){
   if (numChosen < 5 && !colorsChosen.includes(event.target.id)){
-    // document.getElementById("btnSubmit").style.display = "block";
     let fiveColors = document.getElementById("fiveColors");
     let newDiv = document.createElement("div");
     newDiv.id = "selected" + event.target.id;
@@ -92,14 +100,6 @@ function addColor(event){
     fiveColors.appendChild(newDiv);
     numChosen++;
     colorsChosen.push(event.target.id);
-    // let newInput = document.createElement("input");
-    // newInput.setAttribute("type", "hidden");
-    // newInput.setAttribute("value", event.target.id);
-    // newInput.setAttribute("id", "input" + event.target.id);
-
-    // formDiv.appendChild(newInput);
-
-
   } 
 }
 

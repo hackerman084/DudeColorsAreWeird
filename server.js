@@ -6,13 +6,24 @@ const bodyParser = require('body-parser');
 var app = express();
 app.use(cors()); // enable cors
 app.use(express.static('.'))
+const router = express.Router();
 
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(express.bodyParser());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+// router.post('/test', (res, req) => {
+// 	console.log(req.body);
+// 	console.log("REQ.BODY: " + req.body);
+// 	console.log("RES");
+// })
+
+// app.use("/api", router);
 
 app.listen(8080, function() {
   console.log("A4 Data Server is running at localhost: 8080")
 });
+
 
 app.post('/send', (req, res) => {
 	console.log("it worked!");

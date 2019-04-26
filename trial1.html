@@ -1,0 +1,184 @@
+<!-- <h1> Dude Colors are So Weird </h1>  -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dude Colors are So Weird </title>
+  <link rel="stylesheet" type="text/css" href="colors.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id = "intro_div">
+    <div id = "intro_text">
+      <p>
+        Welcome to Astha and Rebeca's Experiment! You will be asked to do 2 experiments with a series of trials within them, but first, please fill out the form below! When you're ready, click the "Next" button. <br>
+      </p>
+    </div>
+    <div id = "form">
+      <div class = "question"> 
+        <p>
+            1. Enter your first name. 
+        </p>
+        <div class = "text-box">
+            <p> First Name: </p>
+            <input type="text" id="first_name"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            2. Enter your last name. 
+        </p>
+        <div class = "text-box">
+            <p> Last Name: </p>
+            <input type="text" id="last_name"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            2. Enter your age. 
+        </p>
+        <div class = "text-box">
+            <p> Age: </p>
+            <input type="text" id="age"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            4. Enter your major or occupation. 
+        </p>
+        <div class = "text-box">
+            <p> Major or Occupation: </p>
+            <input type="text" id="major_occ"><br>
+        </div>         
+      </div>
+
+      <div class = "question"> 
+        <p>
+            4. To what degree to you agree with the following statement: I consider myself to be a graphic designer, by trade, hobby, etc. 
+        </p>
+          <ul class="likert">
+            <li> Completely Disagree </li>
+            <li><input type="radio" name="graphic" value="1" /></li>
+            <li><input type="radio" name="graphic" value="2" /></li>
+            <li><input type="radio" name="graphic" value="3" /></li>
+            <li><input type="radio" name="graphic" value="4" /></li>
+            <li><input type="radio" name="graphic" value="5" /></li>
+            <li> Completely Agree </li>
+          </ul>
+      </div>
+
+      <div class = "question"> 
+        <p>
+            5. To what degree to you agree with the following statement: I consider myself to be an artist, by trade, hobby, etc. 
+        </p>
+          <ul class="likert">
+            <li> Completely Disagree </li>
+            <li><input type="radio" name="artist" value="1" /></li>
+            <li><input type="radio" name="artist" value="2" /></li>
+            <li><input type="radio" name="artist" value="3" /></li>
+            <li><input type="radio" name="artist" value="4" /></li>
+            <li><input type="radio" name="artist" value="5" /></li>
+            <li> Completely Agree </li>
+          </ul>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="container" id = "container" style="display:none">
+    <div class="row">
+    	<h2 id="mood"></h2>
+      <div class="col-md-6">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td class="square" style="background: rgb(221, 251, 12)"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>
+            <tr>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>
+            <tr>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>
+            <tr>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>
+            <tr>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>
+            <tr>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>
+            <tr>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>
+            <tr>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+              <td class="square"></td>
+            </tr>              
+          </tbody>
+        </table>        
+      </div>
+      <div class="col-md-6">
+	      <form id = "form" method="POST" action="send">
+	        <div class="col-md-6" id="fiveColors"></div> 
+	        <div class="col-md-6">
+	        	<input type="button" id="btnNext" class="btn btn-primary" value="Next" onclick="next()">
+	        	<div class="col-md-6" id="confirmNext" style="display: none">
+	        		<div class="row">
+	        			Are you sure you want to continue?
+	        		</div>
+	        		<div class = "row">
+	        			<input type="button" class="btn btn-primary" value="Yes" onclick="confirmYes()">
+	        			<input type="button" class="btn btn-primary" value="Cancel" onclick="confirmCancel()">
+	        		</div>
+	        	</div>
+		        <input type="hidden" name="textInput" value="test">
+		        <button type="submit" id="btnSubmit" style="display: none">Submit</button>       
+	        </div>
+	      </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>

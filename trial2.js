@@ -196,7 +196,6 @@ var question8 = getText("response").trim();
 
 	//probably will send information to database at this point
 	console.log(answers);
-	url = url +"api/insert";
 	axios.post("/api/insert", answers);
 	return true;
 

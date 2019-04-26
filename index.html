@@ -7,6 +7,7 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./trial2.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
         <div id = "task_description">
@@ -16,8 +17,8 @@
 
                 When you're ready, press start to begin!
             </p></div>
-        <div id = start_button_div>
-            <button id = start_button onclick = "onStartPress()"> Start </button> 
+        <div id = "start_button_div">
+            <button id = "start_button" onclick = "onStartPress()"> Start </button> 
         </div>
         
         <div id = "flex_container">
@@ -26,16 +27,16 @@
             </div>
 
             <div id = "form" style="display:none">
-                    <div class = question> 
+                    <div class = "question"> 
                         <p>
                             1. Describe your current mood after viewing this infographic with a single word. 
                         </p>
-                            <div class = text-box>
+                            <div class = "text-box">
                                 <p> Emotion: </p>
                                 <input type="text" id="curr_emotion"><br>
                             </div>         
                     </div>
-                    <div class = question> 
+                    <div class = "question"> 
                         <p>
                             2. How strongly do you feel that emotion?
                         </p>
@@ -50,11 +51,11 @@
                           <li> Extremely Strongly </li>
                         </ul>
                     </div>
-                    <div class = question>
+                    <div class = "question">
                         <p>
                             3. What are 5 emotions that come to mind when examining the palette of the infographic?
                         </p>
-                        <div class = text-box>
+                        <div class = "text-box">
                             <p> First emotion: </p>
                             <input type="text" id="emotion0"><br>
                             <p> Second emotion: </p>
@@ -68,7 +69,7 @@
                         </div>
                     </div>
 
-                    <div class = question>
+                    <div class = "question">
                         <p> 
                             4. If you had to choose the best categorization for the mood of this palette, what would it be? 
                         </p>
@@ -91,7 +92,7 @@
                             <li><input type="radio" name="palette1" value="7" /></li>       
                         </ul>
                     </div>
-                    <div class = question> 
+                    <div class = "question"> 
                         <p>
                             5. How satisfied are you with the above assessment? 
                         </p>
@@ -106,7 +107,7 @@
                             </ul>
                     </div>
 
-                    <div class = question>
+                    <div class = "question">
                         <p> 
                             6. If you had to choose the second best categorization for the mood of this palette, what would it be? 
                         </p>
@@ -129,7 +130,7 @@
                             <li><input type="radio" name="palette2" value="7" /></li>       
                         </ul>
                     </div>
-                    <div class = question> 
+                    <div class = "question"> 
                         <p>
                             7. How satisfied are you with the above assessment? 
                         </p>
@@ -143,7 +144,7 @@
                               <li> Completely Satisfied with Response </li>
                             </ul>
                     </div>
-                    <div class = question>
+                    <div class = "question">
                         <p> 
                             8. Does the color palette influence your perception of the infographic? If so, how? Please limit your response to 1-2 sentences.
                         </p>
@@ -155,7 +156,7 @@
                         </div>
                     </div>
 
-                    <div class = question>
+                    <div class = "question">
                         <p>
                             9. Does the infographic seem to suggest a neutral, positive, or negative connatation to the information presented?
                         </p>
@@ -169,7 +170,7 @@
                         </ul>
                     </div>
 
-                    <div class = question>
+                    <div class = "question">
                         <p> 
                             10. Do you believe this color palette could be used to present information in a positive or negative light? 
                         <p>
@@ -183,7 +184,7 @@
                         </ul>
                     </div>
 
-                    <div class = question> 
+                    <div class = "question"> 
                         <p>
                             11. How strongly do you feel about the above response?
                         </p>

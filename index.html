@@ -4,185 +4,279 @@
 <head>
   <title>Dude Colors are So Weird </title>
   <link rel="stylesheet" type="text/css" href="colors.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <div id = "intro_div">
-    <div id = "intro_text">
-      <p>
-        Welcome to Astha and Rebeca's Experiment! You will be asked to do 2 experiments with a series of trials within them, but first, please fill out the form below! When you're ready, click the "Next" button. <br>
-      </p>
-    </div>
-    <div id = "form1">
-      <div class = "question"> 
-        <p>
-            1. Enter your first name. 
-        </p>
-        <div class = "text-box">
-            <p> First Name: </p>
-            <input type="text" id="first_name"><br>
-        </div>         
-      </div>
+	<nav class= "navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="#">Color Experiment</a>
+	</nav>
+	<br>
+	<div class="col-md-12" id ="intro">
+		<div class="col justify-content-center">
+	    	<p>
+	        	Welcome to Astha and Rebeca's Experiment! You will be asked to do 2 experiments with a series of trials within them, but first, please fill out the form below! When you're ready, click the "Next" button. <br>
+	    	</p>
+	  	</div>
+	<hr />
+	</div>
+<div class="container">
+  <div id = "intro_div" class="panel panel-default">
+    <div id = "form1" class="panel panel-body">
+	    <div class="row row-spacer">
+	      <div class = "question col-md-6"> 
+<!-- 	        <p>
+	            1. Enter your first name. 
+	        </p> -->
+	        <div class = "text-box">
+	        	<div class="col-md-3">
+	            	<p>1. First Name: </p>
+	        	</div>
 
-      <div class = "question"> 
-        <p>
-            2. Enter your last name. 
-        </p>
-        <div class = "text-box">
-            <p> Last Name: </p>
-            <input type="text" id="last_name"><br>
-        </div>         
-      </div>
+	            <div class="col-md-8">
+	            	<input type="text" class="form-control full-input" id="first_name"><br>
+	            </div>
+	        </div>         
+	      </div>
 
-      <div class = "question"> 
-        <p>
-            3. Enter your age. 
-        </p>
-        <div class = "text-box">
-            <p> Age: </p>
-            <input type="text" id="age"><br>
-        </div>         
-      </div>
+	      <div class = "question col-md-6"> 
+<!-- 	        <p>
+	            2. Enter your last name. 
+	        </p> -->
+	        <div class = "text-box">
+	        	<div class="col-md-3">
+	            	<p>2. Last Name: </p>
+				</div>
+				<div class="col-md-8">
+	            	<input type="text" class="form-control" id="last_name"><br>
+				</div>			
+	        </div>         
+	      </div>    	
+		</div>
 
-      <div class = "question"> 
-        <p>
-            4. Enter your major or occupation. 
-        </p>
-        <div class = "text-box">
-            <p> Major or Occupation: </p>
-            <input type="text" id="major_occ"><br>
-        </div>         
-      </div>
+		<div class="row row-spacer">
+	      <div class = "question col-md-6" > 
+<!-- 	        <p>
+	            3. Enter your age. 
+	        </p> -->
+	        <div class = "text-box">
+	        	<div class="col-md-3">
+	            	<p>3. Age: </p>            	
+				</div>
+				<div class="col-md-8">
+	            	<input type="number" min="1" class="form-control" id="age"><br>            	
+				</div>        	
+	        </div>         
+	      </div>
 
-      <div class = "question"> 
-        <p>
-            5. To what degree to you agree with the following statement: I consider myself to be a graphic designer, by trade, hobby, etc. 
-        </p>
-          <ul class="likert">
-            <li> Completely Disagree </li>
-            <li><input type="radio" name="graphic" value="1" /></li>
-            <li><input type="radio" name="graphic" value="2" /></li>
-            <li><input type="radio" name="graphic" value="3" /></li>
-            <li><input type="radio" name="graphic" value="4" /></li>
-            <li><input type="radio" name="graphic" value="5" /></li>
-            <li> Completely Agree </li>
-          </ul>
-      </div>
+	      <div class = "question col-md-6"> 
+<!-- 	        <p>
+	            4. Enter your major or occupation. 
+	        </p> -->
+	        <div class = "text-box">
+	        	<div class="col-md-5">
+	            	<p>4. Major or Occupation: </p>            	
+				</div>
+				<div class="col-md-8">
+	            	<input type="text" class="form-control" id="major_occ"><br>            	
+				</div>
+	        </div>         
+	      </div>			
+		</div>
 
-      <div class = "question"> 
-        <p>
-            6. To what degree to you agree with the following statement: I consider myself to be an artist, by trade, hobby, etc. 
-        </p>
-          <ul class="likert">
-            <li> Completely Disagree </li>
-            <li><input type="radio" name="artist" value="1" /></li>
-            <li><input type="radio" name="artist" value="2" /></li>
-            <li><input type="radio" name="artist" value="3" /></li>
-            <li><input type="radio" name="artist" value="4" /></li>
-            <li><input type="radio" name="artist" value="5" /></li>
-            <li> Completely Agree </li>
-          </ul>
-      </div>
+		<div class="row row-spacer">
+	      <div class = "question col-md-6"> 
+			<p>
+			    5. To what degree to you agree with the following statement: I consider myself to be a graphic designer, by trade, hobby, etc. 
+			</p>
+	<!-- 		<ul class="likert">
+				<li> Completely Disagree </li>
+				<li><input type="radio" name="graphic" value="1" /></li>
+				<li><input type="radio" name="graphic" value="2" /></li>
+				<li><input type="radio" name="graphic" value="3" /></li>
+				<li><input type="radio" name="graphic" value="4" /></li>
+				<li><input type="radio" name="graphic" value="5" /></li>
+				<li> Completely Agree </li>
+			</ul> -->
+			<div class="col-md-8">
+				<label>Completely Disagree</label>
+			    <div class="radio">
+			      <label><input type="radio" name="graphic" value="1">1</label>
+			    </div>
+			    <div class="radio">
+			      <label><input type="radio" name="graphic" value="2">2</label>
+			    </div>	
+			    <div class="radio">
+			      <label><input type="radio" name="graphic" value="3">3</label>
+			    </div>	
+			    <div class="radio">
+			      <label><input type="radio" name="graphic" value="4">4</label>
+			    </div>	
+			    <div class="radio">
+			      <label><input type="radio" name="graphic" value="5">5</label>
+			    </div>	
+			    <label>Completely Agree</label>		    		    		    		    	
+			</div>
+
+	      </div>
+			
+	      <div class = "question col-md-6"> 
+	        <p>
+	            6. To what degree to you agree with the following statement: I consider myself to be an artist, by trade, hobby, etc. 
+	        </p>
+	<!--           <ul class="likert">
+	            <li> Completely Disagree </li>
+	            <li><input type="radio" name="artist" value="1" /></li>
+	            <li><input type="radio" name="artist" value="2" /></li>
+	            <li><input type="radio" name="artist" value="3" /></li>
+	            <li><input type="radio" name="artist" value="4" /></li>
+	            <li><input type="radio" name="artist" value="5" /></li>
+	            <li> Completely Agree </li>
+	          </ul> -->
+
+	    	<div class="col-md-8">
+				<label>Completely Disagree</label>
+			    <div class="radio">
+			      <label><input type="radio" name="artist" value="1">1</label>
+			    </div>
+			    <div class="radio">
+			      <label><input type="radio" name="artist" value="2">2</label>
+			    </div>	
+			    <div class="radio">
+			      <label><input type="radio" name="artist" value="3">3</label>
+			    </div>	
+			    <div class="radio">
+			      <label><input type="radio" name="artist" value="4">4</label>
+			    </div>	
+			    <div class="radio">
+			      <label><input type="radio" name="artist" value="5">5</label>
+			    </div>	
+			    <label>Completely Agree</label>	    		
+			</div>
+	      </div>
+		</div>
+		<br>
       <div id = error_div style = "display:none">
-            <p>
-                Fill out all questions before moving on to the next question.
+            <p style="color: red">
+                <strong>Fill out all questions before moving on to the next question.</strong>
             </p>
         </div> 
-      <div id = "next_button_div">
-        <button id = next_button onclick = "onNextPress()"> Next </button>  
+      <div id = "next_button_div" class="col text-right">
+        <button id = next_button class="btn btn-primary" onclick = "onNextPress()"> Next </button>  
       </div>
+      <br>
 
 
     </div>
   </div>
+</div>
   <div class="container" id = "container" style="display:none">
-    <div class="row">
+  	<div class="row">
+  		<p><strong>Instructions:</strong> Please choose 5 colors that you believe match with the mood stated below. Once you have chosen your 5 colors press next, and you will be directed to the next mood.</p>
+	</div>
+  	<div class="row">
     	<h2 id="mood"></h2>
-      <div class="col-md-6">
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <td class="square" style="background: rgb(221, 251, 12)"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>
-            <tr>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>
-            <tr>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>
-            <tr>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>
-            <tr>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>
-            <tr>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>
-            <tr>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>
-            <tr>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-              <td class="square"></td>
-            </tr>              
-          </tbody>
-        </table>        
-      </div>
+  	</div>
+    <div class="row">
+		<div class="col-md-6">
+    		<div class="card">
+  				<div class="card-body">
+    				<table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td class="square" style="background: rgb(221, 251, 12)"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+        </tr>
+        <tr>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+        </tr>
+        <tr>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+        </tr>
+        <tr>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+        </tr>
+        <tr>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+        </tr>
+        <tr>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+          <td class="square"></td>
+        </tr>           
+      </tbody>
+    				</table> 
+    			</div>       
+  			</div>
+		</div>
       <div class="col-md-6">
         <!-- action="send" method="POST" -->
 	      <div id = "form">
-	        <div class="col-md-6" id="fiveColors"></div> 
-	        <div class="col-md-6">
-	        	<input type="button" id="btnNext" class="btn btn-primary" value="Next" onclick="next()">
-	        	<div class="col-md-6" id="confirmNext" style="display: none">
-	        		<div class="row">
-	        			Are you sure you want to continue?
-	        		</div>
-	        		<div class = "row">
-	        			<input type="button" class="btn btn-primary" value="Yes" onclick="confirmYes()">
-	        			<input type="button" class="btn btn-primary" value="Cancel" onclick="confirmCancel()">
-	        		</div>
-	        	</div>
-		        <input type="hidden" name="textInput" value="test">
-		        <button type="submit" id="btnSubmit" onclick = "submit()" style="display: none">Submit</button>       
-	        </div>
+	      	<div class="row">
+	      		<div class="row">
+		        	<div class="col-md-6" id="fiveColors"></div> 
+	      		</div>
+		        <div class="col-md-6">
+		        	<input type="button" id="btnNext" class="btn btn-primary" value="Next" onclick="next()">
+			      	<div id = error_div1 style = "display:none;">
+			            <p style="color: red">
+			                <strong>You must choose 5 colors to continue</strong>
+			            </p>
+			        </div> 		        	
+		        	<div class="col-md-12" id="confirmNext" style="display: none">
+		        		<div class="row">
+		        			Are you sure you want to continue?
+		        		</div>
+		        		<div class = "row row-spacer">
+		        			<div class="col-md-6">
+		        				<input type="button" class="btn btn-primary" value="Yes" onclick="confirmYes()">
+		        			</div>
+		        			<div class="col-md-6">		        				
+		        				<input type="button" class="btn btn-primary" value="Cancel" onclick="confirmCancel()">
+		        			</div>
+		        		</div>
+		        	</div>
+			        <input type="hidden" name="textInput" value="test">
+			        <button type="submit" id="btnSubmit" class="btn btn-success" onclick = "submit()" style="display: none">Submit</button>       
+		        </div>
+	      	</div>
+
 	      </form>
       </div>
     </div>

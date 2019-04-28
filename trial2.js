@@ -8,6 +8,8 @@ var palette = "";
 var trial_data = {};
 var radio = ["curr_emotion", "curr_state", "palette1", "satisfied1", "palette2", "satisfied2", "conn", "light", "light_state"]
 var exp2 = {};
+let trial_startTime;
+let trial_endTime;
 function hide(id){
 	document.getElementById(id).style.display = "none";
 }
@@ -17,7 +19,7 @@ function show(id, value="block"){
 
 
 function initTrial(){
-	if (counter >= 1){
+	if (counter >= 5){
 		//hide everything
 		hide("image");
 		hide("next_button_div");
@@ -33,7 +35,7 @@ function initTrial(){
 		show("image");
 		show("form", "flex");
 		chooseImage(counter);
-
+		document.getElementById("curr_emotion").focus();
 		//reveal next button
 		show("next_button_div");
 		
@@ -41,15 +43,18 @@ function initTrial(){
 }
 
 function onStartPress(){
+	trial_startTime = new Date();
 	console.log("PRESSED");
 	//hide start button
 	hide("start_button_div");
+	hide("startBegin");
 	trial_data = JSON.parse(window.localStorage.getItem("trial_data"));
 	console.log("TRIAL DATA: " + JSON.stringify(trial_data));
 	initTrial();
 }
 
 function onNextPress(){
+	trial_endTime = new Date();
 	if (getInfo()){
 		clearInfo();
 		counter++;
@@ -159,7 +164,7 @@ function getInfo(){
 	console.log("QUESTION 7: " +question7);
 	answers["q7"] = question7;
 
-var question8 = getText("response").trim();
+	var question8 = getText("response").trim();
 	if (!question8 || question8.length === 0){
 		show("error_div");
 		return false;
@@ -192,7 +197,9 @@ var question8 = getText("response").trim();
 	console.log("QUESTION 11: " +question11);
 	answers["q11"] = question11;
 
-
+	console.log("START: " + trial_startTime);
+	console.log("END" + trial_endTime);
+	answers["time"] = (trial_endTime - trial_startTime)/1000;
 	//probably will send information to database at this point
 	console.log(answers);
 	
@@ -200,10 +207,8 @@ var question8 = getText("response").trim();
 	exp2[trialNum] = answers;
 	console.log(exp2);
 	return true;
-
-
-
 }
+
 function onSubmitPress(){
 	console.log("SUBMIT!");
 	hide("submit_button_div");

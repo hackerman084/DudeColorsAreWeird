@@ -12,6 +12,10 @@ let finalResults = [];
 let init_answers = {};
 let form_data = {}
 let trial_data = {};
+let trial1_startTime;
+let trial1_endTime;
+let total_time;
+let clicks = 0;
 
 function hide(id){
   document.getElementById(id).style.display = "none";
@@ -82,11 +86,13 @@ function onNextPress(){
   //check if all information is saved
   if (getInfo()){
     //hide form
+    hide("intro");
     hide("intro_div");
     hide("error_div");
     show("container");
     trial_data["metadata"] = init_answers;
     console.log(trial_data);
+    trial1_startTime = new Date();
   }
   else{
     show("error_div");
@@ -111,6 +117,9 @@ function next(){
   if (colorsChosen.length === 5){
     document.getElementById("confirmNext").style.display = "block";
     document.getElementById("btnNext").style.display = "none";
+    hide("error_div1");
+  } else {
+    show("error_div1");
   }
 }
 
@@ -126,20 +135,28 @@ function confirmYes(){
     newInput.setAttribute("class", "inputColors");
 
     formDiv.appendChild(newInput);
-
-    //adding results to object
-    let results = {};
-    results["mood"] = document.getElementById("mood").innerHTML;
-    results["colors"] = colorsChosen;
-
-    let trialNum = "trial" +tracking;
-    console.log(trialNum + " RESULTS: " +JSON.stringify(results));
-
-    trial_data[trialNum] = results;
-
-
   }
-  if (tracking < 0){
+  trial1_endTime = new Date();
+  let time = trial1_endTime - trial1_startTime;
+  time /= 1000;
+  trial1_startTime = new Date();
+
+  //adding results to object
+  let results = {};
+  results["mood"] = document.getElementById("mood").innerHTML;
+  results["colors"] = colorsChosen;
+  results["time"] = time;
+  results["clicks"] = clicks;
+
+  let trialNum = "trial" +tracking;
+  console.log(trialNum + " RESULTS: " +JSON.stringify(results));
+
+  trial_data[trialNum] = results;
+
+  console.log(trial_data);
+
+
+  if (tracking < 7){
       document.getElementById("btnNext").style.display = "block";
       document.getElementById("confirmNext").style.display = "none";
       reset();
@@ -147,8 +164,15 @@ function confirmYes(){
       document.getElementById("mood").innerHTML = moods[tracking];
       numChosen = 0;
       colorsChosen = [];
+      clicks = 0;
 
   } else {
+    // let trial1_endTime = new Date();
+    // total_time = trial1_endTime - trial1_startTime;
+    // total_time /= 1000;
+    // console.log(trial1_startTime);
+    // console.log(trial1_endTime);
+    // console.log(total_time);
     document.getElementById("confirmNext").style.display = "none";
     document.getElementById("btnSubmit").style.display = "block"; 
   }
@@ -189,6 +213,7 @@ function submit(){
  }
 
 function addColor(event){
+  clicks++;
   if (numChosen < 5 && !colorsChosen.includes(event.target.id)){
     let fiveColors = document.getElementById("fiveColors");
     let newDiv = document.createElement("div");
@@ -212,6 +237,7 @@ function addColor(event){
 }
 
  function remove(event){
+  clicks++;
   var id = event.target.id.slice(8);
   var element = document.getElementById(event.target.id);
   element.parentNode.removeChild(element);

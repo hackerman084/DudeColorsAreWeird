@@ -1,43 +1,78 @@
 const express = require('express');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
+
+var MongoClient = require('mongodb').MongoClient;
+var database;
+var collection; 
+
+var test = "mongodb://test:test123@ds147436.mlab.com:47436/heroku_9q5nxrrj"
+MongoClient.connect(test || "mongodb://localhost/responses",{ useNewUrlParser: true }, function (err,datab){
+	if (err) throw err;
+	console.log("connected");
+	//creating table
+	database = datab.db('heroku_9q5nxrrj')
+	console.log(process.env.MONGODB_URI);
+	collection = database.collection('data');
+
+});
 
 var app = express();
 app.use(cors()); // enable cors
 app.use(express.static('.'))
-
-app.use(bodyParser.urlencoded({extended: false}));
+const router = express.Router();
+app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
-
-app.listen(8080, function() {
-  console.log("A4 Data Server is running at localhost: 8080")
+router.post("/insert", (req, res) =>{
+	// console.log("RES: ");
+	// console.log(res);
+	// console.log("REQ: ");
+	// console.log(req);
+	console.log("REQ.BODY: "+req.body);
+	console.log(req.body);
+	collection.insertOne(req.body, function(ess, res){
+		if (err) throw err;
+		console.log("inserted: " +req.body);
+	});
 });
 
-app.post('/send', (req, res) => {
-	console.log("it worked!");
-	console.log(req.body);
-	res.send(req.body);
-	// var transporter = nodemailer.createTransport({
-	//   service: 'gmail',
-	//   auth: {
-	//     user: 'rebeca.i.guillen@gmail.com',
-	//     pass: 'risabel1998'
-	//   }
-	// });
+app.use("/api", router);
+var port = process.env.PORT || 8080; 
+console.log("PORT:  "+port); 
+app.listen(port, function() {
+  console.log("Final Project Data Server is running")
+});
 
-	// var mailOptions = {
-	//   from: 'rebeca.i.guillen@gmail.com',
-	//   to: 'asinghal084@gmail.com',
-	//   subject: 'Sending Email using Node.js',
-	//   text: 'That was easy!'
-	// };
 
-	// transporter.sendMail(mailOptions, function(error, info){
-	//   if (error) {
-	//     console.log(error);
-	//   } else {
-	//     console.log('Email sent: ' + info.response);
-	//   }
-	// });
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

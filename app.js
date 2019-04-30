@@ -164,7 +164,7 @@ function confirmYes(){
   console.log(trial_data);
 
 
-  if (tracking < 0){
+  if (tracking < 7){
       document.getElementById("btnNext").style.display = "block";
       document.getElementById("confirmNext").style.display = "none";
       reset();

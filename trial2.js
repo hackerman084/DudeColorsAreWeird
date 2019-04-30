@@ -19,7 +19,7 @@ function show(id, value="block"){
 
 
 function initTrial(){
-	if (counter >= 1){
+	if (counter >= 5){
 		//hide everything
 		hide("image");
 		hide("next_button_div");

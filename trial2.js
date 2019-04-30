@@ -5,7 +5,7 @@ var imageNames = ["introverts", "commodities", "shopping", "burger", "gaming"];
 var paletteNames = ["disturbing", "negative", "serious", "trustworthy", "calm", "playful", "positive", "exciting"];
 var imgName = "";
 var palette = "";
-var trial_data = {};
+var all_data = {};
 var radio = ["curr_emotion", "curr_state", "palette1", "satisfied1", "palette2", "satisfied2", "conn", "light", "light_state"]
 var exp2 = {};
 let trial_startTime;
@@ -19,7 +19,7 @@ function show(id, value="block"){
 
 
 function initTrial(){
-	if (counter >= 5){
+	if (counter >= 1){
 		//hide everything
 		hide("image");
 		hide("next_button_div");
@@ -48,14 +48,15 @@ function onStartPress(){
 	//hide start button
 	hide("start_button_div");
 	hide("startBegin");
-	trial_data = JSON.parse(window.localStorage.getItem("trial_data"));
-	console.log("TRIAL DATA: " + JSON.stringify(trial_data));
+	all_data = JSON.parse(window.localStorage.getItem("all_data"));
+	console.log("TRIAL DATA: " + JSON.stringify(all_data));
 	initTrial();
 }
 
 function onNextPress(){
 	trial_endTime = new Date();
 	if (getInfo()){
+		hide("error_div");
 		clearInfo();
 		counter++;
 		initTrial();
@@ -204,7 +205,10 @@ function getInfo(){
 	console.log(answers);
 	
 	var trialNum = "trial" +counter;
+	answers["imageName"] = imgName;
+	answers["palette"] = palette;
 	exp2[trialNum] = answers;
+
 	console.log(exp2);
 	return true;
 }
@@ -212,14 +216,18 @@ function getInfo(){
 function onSubmitPress(){
 	console.log("SUBMIT!");
 	hide("submit_button_div");
+	hide("error_div");
 	show("thank_you_div");
-	trial_data["exp2"] = exp2;
+	all_data["exp2"] = exp2;
+	var endtime = new Date();
+	var meta = all_data['metadata'];
+	meta['end_datetime_trial2'] = endtime.toUTCString();
+	all_data["metadata"] = meta;
 
-	console.log("TRIAL DATA: " +JSON.stringify(trial_data));
-	axios.post("/api/insert", trial_data);
 
 
-
+	console.log("All DATA: " +JSON.stringify(all_data));
+	//axios.post("/api/insert", all_data);
 
 }
 
@@ -230,6 +238,7 @@ function chooseImage(counter){
 	var pal_index = Math.floor((Math.random() * paletteNames.length));
 	console.log(typeof(pal_index));
 	palette = paletteNames[pal_index];
+
 
 	var path = "./infographics/neutral/" + imgName + "/" + palette + imgName +".png";
 

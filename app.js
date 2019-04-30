@@ -16,6 +16,8 @@ let trial1_startTime;
 let trial1_endTime;
 let total_time;
 let clicks = 0;
+let start_time_stamp = "";
+let all_data = {};
 
 function hide(id){
   document.getElementById(id).style.display = "none";
@@ -43,6 +45,7 @@ function getInfo(){
   }
   console.log("Q1: " +q1);
   init_answers["firstname"] = q1;
+
 
   var q2 = getText("last_name");
   if (!q2 || q2.length === 0){
@@ -80,6 +83,7 @@ function getInfo(){
   console.log("Q6: " +q6);
   init_answers["artist_exp"] = q6;
 
+
   return true;
 }
 function onNextPress(){
@@ -90,9 +94,13 @@ function onNextPress(){
     hide("intro_div");
     hide("error_div");
     show("container");
-    trial_data["metadata"] = init_answers;
-    console.log(trial_data);
     trial1_startTime = new Date();
+    if (start_time_stamp.length === 0){
+      start_time_stamp = trial1_startTime.toUTCString(); //should only be once
+    }
+    init_answers["start_datetime"] = start_time_stamp;
+    all_data["metadata"] = init_answers;
+    console.log(trial_data);
   }
   else{
     show("error_div");
@@ -156,7 +164,7 @@ function confirmYes(){
   console.log(trial_data);
 
 
-  if (tracking < 7){
+  if (tracking < 0){
       document.getElementById("btnNext").style.display = "block";
       document.getElementById("confirmNext").style.display = "none";
       reset();
@@ -193,13 +201,17 @@ function submit(){
   console.log(trialNum + " RESULTS: " +results);
 
   trial_data[trialNum] = results;
-
+  all_data["exp1"] = trial_data;
+  var meta = all_data["metadata"];
+  var endtime = new Date();
+  meta["end_datetime_trial1"] = endtime.toUTCString();
+  all_data["metadata"] = meta;
   console.log("TRIAL_DATA: ");
-  console.log(trial_data);
+  console.log(all_data);
+  window.localStorage.setItem("all_data", JSON.stringify(all_data)); //storing info in local storage
 
-  window.localStorage.setItem("trial_data", JSON.stringify(trial_data)); //storing info in local storage
 
-  window.location = "./exp2.html"
+  //window.location = "./exp2.html"
   //axios.post("/api/test", results);
 }
 

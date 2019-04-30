@@ -13,13 +13,7 @@ MongoClient.connect(test || "mongodb://localhost/responses",{ useNewUrlParser: t
 	//creating table
 	database = datab.db('heroku_9q5nxrrj')
 	console.log(process.env.MONGODB_URI);
-	collection = database.collection('test');
-	var docs = [{mykey:1}, {mykey:2}, {mykey:3}];
-	collection.insertOne(docs[0]);
-
-		collection.find().toArray(function(err, docs) {
-	    console.log(JSON.stringify(docs));
-	});
+	collection = database.collection('data');
 
 });
 
@@ -39,11 +33,6 @@ router.post("/insert", (req, res) =>{
 	collection.insertOne(req.body, function(ess, res){
 		if (err) throw err;
 		console.log("inserted: " +req.body);
-		var collection = database.collection('test');
-		collection.find().toArray(function(err, docs) {
-	    console.log(JSON.stringify(docs));
-	});
-
 	});
 });
 
@@ -51,7 +40,7 @@ app.use("/api", router);
 var port = process.env.PORT || 8080; 
 console.log("PORT:  "+port); 
 app.listen(port, function() {
-  console.log("A4 Data Server is running")
+  console.log("Final Project Data Server is running")
 });
 
 

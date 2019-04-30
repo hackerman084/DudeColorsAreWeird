@@ -211,7 +211,7 @@ function submit(){
   window.localStorage.setItem("all_data", JSON.stringify(all_data)); //storing info in local storage
 
 
-  //window.location = "./exp2.html"
+  window.location = "./exp2.html"
   //axios.post("/api/test", results);
 }
 

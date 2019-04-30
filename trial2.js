@@ -227,7 +227,7 @@ function onSubmitPress(){
 
 
 	console.log("All DATA: " +JSON.stringify(all_data));
-	//axios.post("/api/insert", all_data);
+	axios.post("/api/insert", all_data);
 
 }
 
